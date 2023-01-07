@@ -1,3 +1,8 @@
+- name: ensure java-17 is installed
+  apt:
+    name: openjdk-17-jre-headless
+  become: yes
+
 - name: ensure the jenkins apt repository key is installed
   apt_key: 
     url: https://pkg.jenkins.io/debian-stable/jenkins.io.key

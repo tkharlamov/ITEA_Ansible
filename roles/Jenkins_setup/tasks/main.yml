@@ -9,10 +9,18 @@
   pip:
     name: python-jenkins
 
-- name: Create a jenkins job using basic authentication
+- name: Create a jenkins Pipeline job using basic authentication
   community.general.jenkins_job:
-    config: "{{ lookup('file', 'templates/config.xml') }}"
-    name: ITEA paper build Pipeline Ansible
+    config: "{{ lookup('file', 'templates/config_pipeline.xml') }}"
+    name: ITEA_Pipeline_Project
+    password: "{{ jenkins_password.user_input }}"
+    url: 'http://{{ ansible_host }}:8080'
+    user: "{{ jenkins_username.user_input }}"
+
+- name: Create a jenkins Freestyle job using basic authentication
+  community.general.jenkins_job:
+    config: "{{ lookup('file', 'templates/config_freestyle.xml') }}"
+    name: ITEA_Freestyle_Project
     password: "{{ jenkins_password.user_input }}"
     url: 'http://{{ ansible_host }}:8080'
     user: "{{ jenkins_username.user_input }}"

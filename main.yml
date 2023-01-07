@@ -1,13 +1,20 @@
-- hosts: ALL
-  user: ohud
+- hosts: hp_host
+  user: test
   become: true
   become_method: sudo
-  gather_facts: no
+  gather_facts: yes
   tasks:
   - include_role:
       name: Jenkins_install
 
-  - name: Pause untill initial config is done
+# - name: Get initial Admin password
+#   command: 'cat /var/lib/jenkins/secrets/initialAdminPassword'
+#   register: pass_variable
+
+# - debug:
+#     msg: "{{ pass_variable }}"
+
+  - name: Pause until initial config is done
     pause:
       prompt: Please enter the username you have set in Jenkins
     register: jenkins_username

@@ -1,0 +1,5 @@
+---
+
+ansible_connection  : ssh
+ansible_user        : test
+ansible_ssh_pass    : 1qa2ws3ed
